@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +7,15 @@
     body {
       font-family: Arial, sans-serif;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
       height: 100vh;
       margin: 0;
+    }
+
+    #header {
+      font-size: 24px;
+      margin-bottom: 10px;
     }
 
     #board {
@@ -39,22 +44,24 @@
       cursor: pointer;
     }
   </style>
-  <title>Tic-Tac-Toe</title>
+  <title>Morpion</title>
 </head>
 <body>
-
+<h1>Morpion</h1>
+<div id="header">Tour de Joueur 1 (X)</div>
 <div id="board"></div>
-<button id="reset-button" onclick="resetGame()">Reset Game</button>
+<button id="reset-button" onclick="resetGame()">Réinitialiser le Jeu</button>
 
 <script>
-  // JavaScript code for the Tic-Tac-Toe game
+  // Code JavaScript pour le jeu de Morpion
 
+  const header = document.getElementById('header');
   const board = document.getElementById('board');
   const cells = [];
   let currentPlayer = 'X';
   let gameActive = true;
 
-  // Create the Tic-Tac-Toe board
+  // Créer le tableau de Morpion
   for (let i = 0; i < 3; i++) {
     for (let j = 0; j < 3; j++) {
       const cell = document.createElement('div');
@@ -67,7 +74,7 @@
     }
   }
 
-  // Create the reset button
+  // Créer le bouton de réinitialisation
   const resetButton = document.getElementById('reset-button');
 
   function handleCellClick() {
@@ -75,21 +82,22 @@
 
     this.textContent = currentPlayer;
     if (checkWinner()) {
-      alert(`Player ${currentPlayer} wins!`);
+      alert(`Le joueur ${currentPlayer} gagne !`);
       gameActive = false;
     } else if (isBoardFull()) {
-      alert('It\'s a draw!');
+      alert('C\'est une égalité !');
       gameActive = false;
     } else {
       currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+      updateHeader();
     }
   }
 
   function checkWinner() {
     const winningCombinations = [
-      [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
-      [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
-      [0, 4, 8], [2, 4, 6]             // Diagonals
+      [0, 1, 2], [3, 4, 5], [6, 7, 8], // Lignes
+      [0, 3, 6], [1, 4, 7], [2, 5, 8], // Colonnes
+      [0, 4, 8], [2, 4, 6]             // Diagonales
     ];
 
     return winningCombinations.some(combination => {
@@ -105,14 +113,19 @@
   }
 
   function resetGame() {
-    // Clear the board
+    // Effacer le tableau
     cells.forEach(cell => {
       cell.textContent = '';
     });
 
-    // Reset game state
+    // Réinitialiser l'état du jeu
     currentPlayer = 'X';
     gameActive = true;
+    updateHeader();
+  }
+
+  function updateHeader() {
+    header.textContent = `Tour de Joueur ${currentPlayer === 'X' ? '1 (X)' : '2 (O)'}`;
   }
 </script>
 
