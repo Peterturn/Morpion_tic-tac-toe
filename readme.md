@@ -24,6 +24,7 @@ Bienvenue dans le projet Morpion ! L'objectif de ce projet est de rendre la page
 
 - [MDN Web Docs - CSS](https://developer.mozilla.org/fr/docs/Web/CSS) : Documentation complète sur les propriétés CSS.
 - [CSS Tricks](https://css-tricks.com/) : Astuces et tutoriels CSS.
+- [Raccourcis VSCode](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf) : Raccourcis VSCode utiles
 
 ## Comment tester votre travail
 
